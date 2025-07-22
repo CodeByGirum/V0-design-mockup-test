@@ -8,7 +8,7 @@ import { Eye, EyeOff, Lock, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import { AdvancedPageTransition } from "@/components/advanced-page-transition"
 import { useTransition } from "@/components/transition-provider"
-import { PixelAnimation } from "@/components/pixel-animation"
+// import { PixelAnimation } from "@/components/pixel-animation"
 
 export default function LoginPage() {
   const { transitionType, transitionDuration } = useTransition()
@@ -56,40 +56,11 @@ export default function LoginPage() {
   return (
     <AdvancedPageTransition type={transitionType} duration={transitionDuration}>
       <div className="relative flex flex-col min-h-screen bg-[#121212] text-white overflow-hidden">
-        {/* Pixel Animation Background */}
-        <PixelAnimation />
-
-        {/* Glowing SWEEPO text with pulsing effect */}
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center z-0 select-none pointer-events-none"
-          animate={{
-            x: calcParallax(60).x,
-            y: calcParallax(60).y,
-          }}
-          transition={{ type: "spring", damping: 60 }}
-        >
-          <motion.h1
-            className="text-[12rem] sm:text-[15rem] md:text-[20rem] font-bold tracking-tighter"
-            animate={{
-              textShadow: [
-                "0 0 20px rgba(255, 255, 255, 0.05)",
-                "0 0 40px rgba(255, 255, 255, 0.1)",
-                "0 0 20px rgba(255, 255, 255, 0.05)",
-              ],
-              opacity: [0.05, 0.1, 0.05],
-            }}
-            transition={{
-              repeat: Number.POSITIVE_INFINITY,
-              duration: 4,
-              ease: "easeInOut",
-            }}
-            style={{
-              color: "rgba(255, 255, 255, 0.05)",
-            }}
-          >
-            SWEEPO
-          </motion.h1>
-        </motion.div>
+        {/* Background pattern */}
+        <div className="absolute inset-0 bg-[#121212] opacity-80 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] to-[#121212]"></div>
+          <div className="absolute inset-0 bg-[url('/grid-pattern.png')] bg-repeat opacity-5"></div>
+        </div>
 
         {/* Content */}
         <div className="relative flex flex-col items-center justify-center min-h-screen px-4 py-12 z-10">
@@ -101,27 +72,25 @@ export default function LoginPage() {
             className="mb-8"
           >
             <Link href="/" className="flex items-center justify-center">
-              <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
-                SWEEPO
-              </span>
+              <span className="text-2xl font-bold text-white">SWEEPO</span>
             </Link>
           </motion.div>
 
-          {/* Glassy login box */}
+          {/* Login box */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="pixel-card w-full max-w-md backdrop-blur-xl bg-[#09090b]/70 border border-[#27272a] rounded-xl shadow-2xl overflow-hidden"
+            className="w-full max-w-md bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg shadow-lg overflow-hidden"
           >
             {/* Login header */}
-            <div className="px-6 pt-6 pb-4">
+            <div className="px-6 pt-6 pb-4 border-b border-[#2a2a2a]">
               <h2 className="text-xl font-medium text-white mb-1">Welcome back</h2>
               <p className="text-sm text-gray-400">Sign in to continue to your dashboard</p>
             </div>
 
             {/* Login form */}
-            <form onSubmit={handleSubmit} className="px-6 pb-6 space-y-5">
+            <form onSubmit={handleSubmit} className="px-6 py-6 space-y-5">
               <div className="space-y-1">
                 <label htmlFor="email" className="block text-xs text-gray-300">
                   Email Address
@@ -135,7 +104,7 @@ export default function LoginPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-[#18181b]/80 border border-[#27272a] text-white text-sm rounded-lg block w-full pl-10 p-2.5 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-colors placeholder:text-gray-500"
+                    className="bg-[#121212] border border-[#2a2a2a] text-white text-sm rounded-md block w-full pl-10 p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 transition-colors placeholder:text-gray-500"
                     placeholder="name@company.com"
                     required
                   />
@@ -155,7 +124,7 @@ export default function LoginPage() {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="bg-[#18181b]/80 border border-[#27272a] text-white text-sm rounded-lg block w-full pl-10 pr-10 p-2.5 focus:outline-none focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 transition-colors placeholder:text-gray-500"
+                    className="bg-[#121212] border border-[#2a2a2a] text-white text-sm rounded-md block w-full pl-10 pr-10 p-2.5 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500 transition-colors placeholder:text-gray-500"
                     placeholder="••••••••"
                     required
                   />
@@ -176,13 +145,13 @@ export default function LoginPage() {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 bg-[#18181b] border-[#27272a] rounded focus:ring-0 focus:ring-offset-0 transition-colors"
+                    className="w-4 h-4 bg-[#121212] border-[#2a2a2a] rounded focus:ring-0 focus:ring-offset-0 transition-colors"
                   />
                   <label htmlFor="remember-me" className="ml-2 text-xs text-gray-300">
                     Remember me
                   </label>
                 </div>
-                <Link href="/forgot-password" className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                <Link href="/forgot-password" className="text-xs text-gray-400 hover:text-white transition-colors">
                   Forgot password?
                 </Link>
               </div>
@@ -191,16 +160,15 @@ export default function LoginPage() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full bg-[#27272a] hover:bg-[#3f3f46] text-white font-medium rounded-lg px-5 py-2.5 text-sm transition-all relative overflow-hidden group"
+                className="w-full bg-[#2a2a2a] hover:bg-[#3a3a3a] text-white font-medium rounded-md px-5 py-2.5 text-sm transition-colors"
               >
-                <span className="relative z-10">Sign in</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-600/20 group-hover:opacity-100 opacity-0 transition-opacity duration-300"></div>
+                Sign in
               </motion.button>
 
               <div className="text-center">
                 <span className="text-xs text-gray-400">
                   Don&apos;t have an account?{" "}
-                  <Link href="/signup" className="text-blue-400 hover:text-blue-300 transition-colors">
+                  <Link href="/signup" className="text-gray-300 hover:text-white transition-colors">
                     Sign up
                   </Link>
                 </span>

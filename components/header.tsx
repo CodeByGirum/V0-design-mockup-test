@@ -41,6 +41,12 @@ export function Header({ transparent = false }: HeaderProps) {
           >
             Analytics
           </Link>
+          <Link
+            href="/integrations"
+            className="text-gray-400 hover:text-white text-xs px-2 sm:px-3 py-1 rounded hover:bg-[#2a2a2a] transition-colors"
+          >
+            Integrations
+          </Link>
         </nav>
       </div>
 
@@ -101,6 +107,13 @@ export function Header({ transparent = false }: HeaderProps) {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Analytics
+              </Link>
+              <Link
+                href="/integrations"
+                className="text-gray-400 hover:text-white text-sm py-1.5 sm:py-2 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Integrations
               </Link>
               <div className="border-t border-[#2a2a2a] my-1 sm:my-2 pt-1 sm:pt-2">
                 <Link
